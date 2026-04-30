@@ -21,6 +21,7 @@ class AdobeDownloader():
 
         # Download the file
         zip_url = self.build_download_url(meeting_link)
+        print(config['Cookie'])
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
             'Cookie': config['Cookie']  
@@ -34,6 +35,7 @@ class AdobeDownloader():
 
 
     def extract_zip(self,temp_dir=config.get("TempDir","adobe_connect_temp")) -> str:
+        temp_dir = Path(temp_dir)
         extract_dir = temp_dir / "extracted"
         with zipfile.ZipFile(self.zip_path, 'r') as zip_ref:
             zip_ref.extractall(extract_dir)
@@ -43,5 +45,6 @@ class AdobeDownloader():
 
     def download_and_extract(self,meeting_url:str) -> str:
         self.download_meeting_zip(meeting_url)
+        print("Extracting files...")
         return self.extract_zip()
 
