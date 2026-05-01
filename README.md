@@ -21,7 +21,16 @@ Adobe Connect stores recordings as fragmented files - audio and video are separa
 
 
 ## Quick Start
-### 1. create `config.json` file manually(only for the first time)
+
+### 1. Requirements
+this code works with **`ffmpeg`**(cli tool). I uploaded it here for windows x86:
+
+https://abrehamrahi.ir/o/public/bTBroNIm/
+
+download it and add its bin directory to your path environment variables.
+
+
+### 2. Create `config.json` file manually(only for the first time)
 linux terminal:
 ```
 cp config.json.example config.json
@@ -34,7 +43,8 @@ windows powershell:
 ```
 Copy-Item config.json.example config.json
 ```
-### 2. setup venv(recommended)
+
+### 3. Setup venv(recommended)
 **first create the virtual environment**
 ```shell
 python -m venv venv
@@ -48,13 +58,13 @@ windows cmd:
 ```cmd
 .\venv\Scripts\acivate.bat
 ```
+### 4. Python requirements
 
-### 3. install requirements
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. configuring 
+### 5. Configuring 
 open the meeting link you want to export and then do these instructions :
  - press `F12` (or inspect the page)
  - go to the `network` tab
@@ -65,7 +75,7 @@ open the meeting link you want to export and then do these instructions :
  - go to the `config.json` in the project and paste the value you just copied for `Cookie` key in the json file
  - now you are ready to run
    
-### 5. Run
+### 6. Run
 ```
 python main.py
 ```
