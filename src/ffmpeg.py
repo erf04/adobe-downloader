@@ -16,6 +16,7 @@ class AdobeFFmpeg():
         print(f"Found audio segments: {[f.name for f in audio_files]}")
 
         if not video_files or not audio_files:
+            self.clean_up()
             raise Exception("Could not find the required screenshare or cameraVoip .flv files.")
         return self
         

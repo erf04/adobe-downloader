@@ -2,7 +2,7 @@ from pathlib import Path
 from .config import config
 import requests
 import zipfile
-
+from rich.progress import Progress, BarColumn, DownloadColumn, TransferSpeedColumn
 
 class AdobeDownloader():
 
@@ -21,16 +21,29 @@ class AdobeDownloader():
 
         # Download the file
         zip_url = self.build_download_url(meeting_link)
-        print(config['Cookie'])
+        # print(config['Cookie'])
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
             'Cookie': config['Cookie']  
         }
         response = requests.get(zip_url,headers=headers, stream=True)
         response.raise_for_status()  # Check if download was successful
-        with open(self.zip_path, 'wb') as f:
-            for chunk in response.iter_content(chunk_size=8192):
-                f.write(chunk)
+        total_size = int(response.headers.get('content-length', 0))
+
+        with Progress(
+            "[progress.description]{task.description}",
+            BarColumn(),
+            "[progress.percentage]{task.percentage:>3.0f}%",
+            DownloadColumn(),
+            TransferSpeedColumn(),
+        ) as progress:
+            task = progress.add_task("Downloading...", total=total_size)
+            
+            with open(self.zip_path, 'wb') as f:
+                for chunk in response.iter_content(chunk_size=8192):
+                    f.write(chunk)
+                    progress.update(task, advance=len(chunk))
+
         print("Download complete.")
 
 
