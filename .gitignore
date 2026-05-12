@@ -6,3 +6,26 @@ adobe.py
 input.csv
 logs/
 adobe_connect_temp/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific
+*.zip
+*.mp4
+temp/
+extracted_*/
