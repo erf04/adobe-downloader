@@ -3,3 +3,6 @@ config.json
 **/__pycache__/
 *.mp4
 adobe.py
+input.csv
+logs/
+adobe_connect_temp/
