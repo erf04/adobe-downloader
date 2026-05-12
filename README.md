@@ -2,7 +2,7 @@
 
 ## What It Does
 
-Downloads Adobe Connect meeting recordings and converts them into a single MP4 video file.
+Downloads Adobe Connect meeting screen recordings and converts them into a single MP4 video file.
 
 ## The Problem It Solves
 
@@ -30,7 +30,7 @@ https://abrehamrahi.ir/o/public/bTBroNIm/
 download it and add its bin directory to your path environment variables.
 
 
-### 2. Create `config.json` file manually(only for the first time)
+### 2 Create `config.json` file manually(only for the first time)
 linux terminal:
 ```
 cp config.json.example config.json
@@ -74,9 +74,15 @@ open the meeting link you want to export and then do these instructions :
  - in the new tab appears , scroll and find the key `Cookie` then copy its value
  - go to the `config.json` in the project and paste the value you just copied for `Cookie` key in the json file
  - now you are ready to run
-   
-### 6. Run
+
+### 6. prepare the input
+you need to prepare input.csv file to the main python file as input 
+```
+cp input.csv.example input.csv
+```
+then fill in the input.csv file with meeting_urls and file_output_name.
+### 7. Run
 ```
 python main.py
 ```
-it will want your `meeting url` and  `output file name`(default is final_video.mp4) and after a while, your mp4 file is ready .
+after a while, your mp4 files are ready .
